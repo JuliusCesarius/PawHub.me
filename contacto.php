@@ -48,17 +48,30 @@ if(array_key_exists("login",$_GET)) {
 		<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 
 		<script type="text/javascript">
-			$(document).ready(function() {
 
-		function validar_email(valor) {
-		// creamos nuestra regla con expresiones regulares.
-		var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-		// utilizamos test para comprobar si el parametro valor cumple la regla
-		if (filter.test(valor))
-			return true;
-		else
-			return false;
-		}
+
+			function resize(){				
+					wh = $(window).height();
+					$('#container').css({
+						height : wh -45
+					});
+			}
+
+			$(window).on("resize",function(){
+					resize();
+			})
+
+			$(document).ready(function() {
+				resize();
+				function validar_email(valor) {
+				// creamos nuestra regla con expresiones regulares.
+				var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+				// utilizamos test para comprobar si el parametro valor cumple la regla
+				if (filter.test(valor))
+					return true;
+				else
+					return false;
+				}
 		
 		// verificar correo usuario
 		$("#userEmail").change(function() {
