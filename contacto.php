@@ -37,6 +37,8 @@ if(array_key_exists("login",$_GET)) {
 		<link rel="stylesheet" href="css/formstyle.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="images/favicon.ico">
+
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/sliding.form.js"></script>
 
@@ -79,6 +81,8 @@ if(array_key_exists("login",$_GET)) {
 							$('#mesagges p').text(mail + ' ya ha sido pre-registrado anteriormente, puedes editar tus datos enviando el formulario nuevamente');
 							$('#mesagges').css('display','block');
 							//$("#userEmail").val('');
+					   }else{
+					   		$('#mesagges').css('display','none');
 					   }	
 					}
 				});
@@ -87,6 +91,7 @@ if(array_key_exists("login",$_GET)) {
 			} else {
 				alert("El email no es valido \nEjemplo: example@example.com");
 				$("#userEmail").val("");
+				$('#mesagges').css('display','none');
 			}
 		
 		});
@@ -128,7 +133,7 @@ if(array_key_exists("login",$_GET)) {
 				
 			if(tw == 'true'){
 				$('.btnsredes').remove();
-				$('#mesagges p').text('¡¡Ya CASI estás pre-registrado!! Verifica tus datos por favor');
+				$('#mesagges p').text('¡¡Ya estás pre-registrado!! Ahora sólo falta verificar tus datos y envíarlos');
 				$('#mesagges').css('display','block');
 				
 				if(userN != '')
@@ -232,7 +237,7 @@ if(array_key_exists("login",$_GET)) {
 											}
 											
 											function verificaFB(){
-												$('#mesagges p').text('¡¡Ya CASI estás pre-registrado!! Verifica tus datos por favor');
+												$('#mesagges p').text('¡¡Ya estás pre-registrado!! Ahora sólo falta verificar tus datos y envíarlos');
 												$('#mesagges').css('display','block');
 												$('#userName').val(userName);
 												$('#userEmail').val(userEmail);
@@ -264,24 +269,22 @@ if(array_key_exists("login",$_GET)) {
 				<div id="nav">
 					<a class="btn_dropdown" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>
 					<ul class="navigation">
-						<li data-slide="1">
+						<li>
 							<a href="index.html">Home</a>
 						</li>
-						<li data-slide="2">
-							<a href="index.html#slide2">What is</a>
+						<li>
+							<a href="index.html#slide2">¿Qué es?</a>
 						</li>
-						<li data-slide="4">
-							<a href="index.html#slide4">Tools</a>
+						<li>
+							<a href="index.html#slide4">Herramientas</a>
 						</li>
-						<li data-slide="6">
-							<a href="index.html#slide6">Motto</a>
+						<li>
+							<a href="index.html#slide6">Motivo</a>
 						</li>
-						<li data-slide="7">
-							<a href="index.html#slide7">Team</a>
+						<li>
+							<a href="index.html#slide7">Equipo</a>
 						</li>
-						<li data-slide="8" id="li_contact">
-							<a>Apóyanos</a>
-						</li>
+
 						<div class="clear"></div>
 					</ul>
 				</div>
@@ -342,7 +345,6 @@ if(array_key_exists("login",$_GET)) {
 						</p>
 
 						<input class="submit" type="button" onclick="return Validar(this,1)" value="Avísenme cuando PawHub esté listo" />
-
 					</fieldset>
 				</form>
 
@@ -387,7 +389,7 @@ if(array_key_exists("login",$_GET)) {
 							¡Contáctanos!
 						</legend>
 						<p>
-							<a href="mailto:info@pawhub.me"><img src="images/mailico.png" alt="contacto" title="info@pawhub.me" /></a>
+							<a href="mailto:info@pawhub.me"><img src="images/mail_blue.png" alt="contacto" title="info@pawhub.me" /></a>
 						</p>
 						<p>
 							<a href="https://www.facebook.com/PawHub" target="_blank"><img src="images/icnfb.png" alt="contacto" title="fb.com/PawHub" /></a>
@@ -400,10 +402,12 @@ if(array_key_exists("login",$_GET)) {
 
 			</div>
 		</div>
+		
+		<p class="aviso">
+			Revisa nuestro <a href="aviso-privacidad.html">Aviso de Privacidad</a>
+		</p>
 			
-		</div>
-
-				<script type="text/javascript">
+		<script type="text/javascript">
 			(function(i, s, o, g, r, a, m) {
 				i['GoogleAnalyticsObject'] = r;
 				i[r] = i[r] ||
@@ -420,141 +424,145 @@ if(array_key_exists("login",$_GET)) {
 			ga('send', 'pageview');
 
 		</script>
-	</body>
-	<script>
-		//Funcion que verifica campos del formulario vacios para IE y Safari
-		function Validar(f, inp) {
-
-			//verificar datos usuario
-			if (inp == 1) {
-
-				var f = document.getElementById('formElem1');
-
-				if (f.userName.value == "") {
-					$('#mesagges p').addClass('error');
-					$('#mesagges p').text("Por favor escribe tu nombre");
-					$('#mesagges').css('display','block');
-					f.userName.focus();
-					return false;
+		
+		<script>
+			//Funcion que verifica campos del formulario vacios para IE y Safari
+			function Validar(f, inp) {
+	
+				//verificar datos usuario
+				if (inp == 1) {
+	
+					var f = document.getElementById('formElem1');
+	
+					if (f.userName.value == "") {
+						$('#mesagges p').addClass('error');
+						$('#mesagges p').text("Por favor escribe tu nombre");
+						$('#mesagges').css('display','block');
+						f.userName.focus();
+						return false;
+					}
+					if (f.userLastname.value == "") {
+						$('#mesagges p').addClass('error');
+						$('#mesagges p').text("Por favor escribe tu apellido");
+						$('#mesagges').css('display','block');
+						f.userLastname.focus();
+						return false;
+					}
+					if (f.userEmail.value == "") {
+						$('#mesagges p').addClass('error');
+						$('#mesagges p').text("Por favor escribe tu email");
+						$('#mesagges').css('display','block');
+						f.userEmail.focus();
+						return false;
+					}
+					if (f.userCity.value == "") {
+						$('#mesagges p').addClass('error');
+						$('#mesagges p').text("Ingresa tu Ciudad");
+						$('#mesagges').css('display','block');
+						f.userCity.focus();
+						return false;
+					}
+	
+					sendValues();
+	
 				}
-				if (f.userLastname.value == "") {
-					$('#mesagges p').addClass('error');
-					$('#mesagges p').text("Por favor escribe tu apellido");
-					$('#mesagges').css('display','block');
-					f.userLastname.focus();
-					return false;
+	
+				if (inp == 2) {
+					//verificar datos candidato
+					if (f.candidateName.value == "") {					
+						$('#mesagges2 p').addClass('error');
+						$('#mesagges2 p').text("Por favor escribe tu nombre");
+						$('#mesagges2').css('display','block');
+						f.candidateName.focus();
+						return false;
+					}
+					if (f.candidateLastname.value == "") {
+						$('#mesagges2 p').addClass('error');
+						$('#mesagges2 p').text("Por favor escribe tu apellido");
+						$('#mesagges2').css('display','block');
+						f.candidateLastname.focus();
+						return false;
+					}
+					if (f.candidateEmail.value == "") {
+						$('#mesagges2 p').addClass('error');
+						$('#mesagges2 p').text("Por favor escribe tu email");
+						$('#mesagges2').css('display','block');
+						f.candidateEmail.focus();
+						return false;
+					}
+					if (f.candidateCity.value == "") {
+						$('#mesagges2 p').addClass('error');
+						$('#mesagges2 p').text("Ingresa tu Ciudad");
+						$('#mesagges2').css('display','block');
+						f.candidateCity.focus();
+						return false;
+					}
+					if ((f.candidateMsg.value == "") || (f.candidateMsg.value == "...") || (f.candidateMsg.value.length == 0)) {//revisar espacios
+						$('#mesagges2 p').addClass('error');
+						$('#mesagges2 p').text("¡¡¡Queremos saber más de ti!!!");
+						$('#mesagges2').css('display','block');
+						f.candidateMsg.focus();
+						return false;
+					}
+					if ((f.candidateInterest.value == "") || (f.candidateInterest.value == "...") || (f.candidateInterest.value.length == 0)) {//revisar espacios
+						$('#mesagges2 p').addClass('error');
+						$('#mesagges2 p').text("¡¡¡Queremos saber tus intereses!!!");
+						$('#mesagges2').css('display','block');
+						f.candidateInterest.focus();
+						return false;
+					}
+	
 				}
-				if (f.userEmail.value == "") {
-					$('#mesagges p').addClass('error');
-					$('#mesagges p').text("Por favor escribe tu email");
-					$('#mesagges').css('display','block');
-					f.userEmail.focus();
-					return false;
-				}
-				if (f.userCity.value == "") {
-					$('#mesagges p').addClass('error');
-					$('#mesagges p').text("Ingresa tu Ciudad");
-					$('#mesagges').css('display','block');
-					f.userCity.focus();
-					return false;
-				}
-
-				sendValues();
-
+	
 			}
-
-			if (inp == 2) {
-				//verificar datos candidato
-				if (f.candidateName.value == "") {					
-					$('#mesagges2 p').addClass('error');
-					$('#mesagges2 p').text("Por favor escribe tu nombre");
-					$('#mesagges2').css('display','block');
-					f.candidateName.focus();
-					return false;
+	
+			function sendValues() {
+				var str;
+				str = $("#formElem1").serialize();
+				
+				try {
+					$.ajax({
+						type : "POST",
+						crossDomain : true,
+						xhrFields : {
+							withCredentials : false
+						},
+						cache : false,
+						url : "http://wskrs.com/Register/PreUser?jsoncallback=?",
+						data : str,
+						dataType : "json",
+						error : callback_error,
+						success : recuperarInfo
+					});
+				} catch(ex) {				
+					$('#mesagges p').addClass('error');
+					$('#mesagges p').text("Ha ocurrido un error\n"+ex.description);
+					$('#mesagges').css('display','block');
+	
 				}
-				if (f.candidateLastname.value == "") {
-					$('#mesagges2 p').addClass('error');
-					$('#mesagges2 p').text("Por favor escribe tu apellido");
-					$('#mesagges2').css('display','block');
-					f.candidateLastname.focus();
-					return false;
-				}
-				if (f.candidateEmail.value == "") {
-					$('#mesagges2 p').addClass('error');
-					$('#mesagges2 p').text("Por favor escribe tu email");
-					$('#mesagges2').css('display','block');
-					f.candidateEmail.focus();
-					return false;
-				}
-				if (f.candidateCity.value == "") {
-					$('#mesagges2 p').addClass('error');
-					$('#mesagges2 p').text("Ingresa tu Ciudad");
-					$('#mesagges2').css('display','block');
-					f.candidateCity.focus();
-					return false;
-				}
-				if ((f.candidateMsg.value == "") || (f.candidateMsg.value == "...") || (f.candidateMsg.value.length == 0)) {//revisar espacios
-					$('#mesagges2 p').addClass('error');
-					$('#mesagges2 p').text("¡¡¡Queremos saber más de ti!!!");
-					$('#mesagges2').css('display','block');
-					f.candidateMsg.focus();
-					return false;
-				}
-				if ((f.candidateInterest.value == "") || (f.candidateInterest.value == "...") || (f.candidateInterest.value.length == 0)) {//revisar espacios
-					$('#mesagges2 p').addClass('error');
-					$('#mesagges2 p').text("¡¡¡Queremos saber tus intereses!!!");
-					$('#mesagges2').css('display','block');
-					f.candidateInterest.focus();
-					return false;
-				}
-
+	
+	
 			}
-
-		}
-
-		function sendValues() {
-			var str;
-			str = $("#formElem1").serialize();
-			
-			try {
-				$.ajax({
-					type : "POST",
-					crossDomain : true,
-					xhrFields : {
-						withCredentials : false
-					},
-					cache : false,
-					url : "http://wskrs.com/Register/PreUser?jsoncallback=?",
-					data : str,
-					dataType : "json",
-					error : callback_error,
-					success : recuperarInfo
-				});
-			} catch(ex) {				
+	
+			// mostramos un mensaje con la causa del problema
+			function callback_error(XMLHttpRequest, textStatus, errorThrown) {
 				$('#mesagges p').addClass('error');
-				$('#mesagges p').text("Ha ocurrido un error\n"+ex.description);
+				$('#mesagges p').text("Ha ocurrido un error al registrarte, por favor intenta nuevamente");
 				$('#mesagges').css('display','block');
-
+	
+				alert(XMLHttpRequest + textStatus + errorThrown);
 			}
-
-
-		}
-
-		// mostramos un mensaje con la causa del problema
-		function callback_error(XMLHttpRequest, textStatus, errorThrown) {
-			$('#mesagges p').addClass('error');
-			$('#mesagges p').text("Ha ocurrido un error al registrarte, por favor intenta nuevamente");
-			$('#mesagges').css('display','block');
-
-			alert(XMLHttpRequest + textStatus + errorThrown);
-		}
-
-		//si tiene exito recuperamos la info
-		function recuperarInfo(ajaxResponse, textStatus) {
-			$('#mesagges p').text('Tus datos han sido enviados.¡¡¡Gracias!!!');
-			$("form").trigger('reset');
-			$('#mesagges').css('display','block');
-		}
-	</script>
+	
+			//si tiene exito recuperamos la info
+			function recuperarInfo(ajaxResponse, textStatus) {
+				$('#mesagges p').text('Tus datos han sido enviados.¡¡¡Gracias!!!');
+				$("form").trigger('reset');
+				$('#mesagges').css('display','block');
+			}
+		</script>
+		
+		</div>
+		
+	</body>
 
 </html>
